@@ -54,7 +54,8 @@ app.get("/search", (req, res) => {
 
 app.get("/episode", (req, res) => {
   const episode = req.query.episode || 0;
-  const url = `https://w1.anime4up.tv/episode/one-piece-%d8%a7%d9%84%d8%ad%d9%84%d9%82%d8%a9-${episode}/`;
+  const animeName = "conan";
+  const url = `https://w1.anime4up.tv/episode/${animeName}-%d8%a7%d9%84%d8%ad%d9%84%d9%82%d8%a9-${episode}/`;
 
   axios(url)
     .then((response) => {
