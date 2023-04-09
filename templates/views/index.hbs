@@ -3,12 +3,43 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Document</title>
   </head>
   <body>
+    <header class="header">
+      <h1 class="logo">Anime Scrapper</h1>
+      <h1 id="searchResult">Search results for {{animeName}}</h1>
 
-    <h1>home page</h1>
-    <a href="/search">search</a>
+      <form id="form" action="">
+        <input
+          class="search-box"
+          type="text"
+          name="anime"
+          placeholder="Search for anime"
+        />
+        <button onclick="myfun()" type="submit">search</button>
+      </form>
+
+    </header>
+    <div id="center" class="result container">
+
+      {{#each links}}
+        <div class="card">
+          <p>{{this.title}}</p>
+          <a href="{{this.linkHref}}"><img src="{{this.imgSrc}}" /> </a>
+
+          <p class="watch"> <a href="/episode">Start watch</a></p>
+        </div>
+      {{/each}}
+    </div>
+    <script src="js/app.js"></script>
   </body>
 
 </html>

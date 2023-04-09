@@ -5,20 +5,19 @@ const cheerio = require("cheerio");
 const path = require("path");
 const app = express();
 const hbs = require("hbs");
-
+const { NOMEM } = require("dns");
+const { link } = require("fs");
+const publicDirPath = path.join(__dirname, "../public");
 const viewPath = path.join(__dirname, "../templates/views");
 const partialsPath = path.join(__dirname, "../templates/partials");
 
+app.use(express.static(publicDirPath));
 //handlebars engine
 app.set("view engine", "hbs");
 app.set("views", viewPath);
 hbs.registerPartials(partialsPath);
 
 app.get("/", (req, res) => {
-  res.render("index");
-});
-
-app.get("/search", (req, res) => {
   const animeName = req.query.anime;
   const url = `https://w1.anime4up.tv/?search_param=animes&s=${animeName}`;
 
@@ -31,20 +30,24 @@ app.get("/search", (req, res) => {
       $(".hover.ehover6", html).each(function () {
         const link = $(this).find("a").attr("href");
         const img = $(this).find(".img-responsive").attr("src");
+        const title = $(this).find(".img-responsive").attr("alt");
         links.push({
+          title,
           link,
           img,
         });
       });
-
+      // res.send(links);
       const linkHTML = links.map((link) => {
         return {
+          title: link.title.replace(/[:! ]/g, " "),
           imgSrc: link.img,
           linkHref: link.link,
+          name: req.query.anime,
         };
       });
 
-      res.render("search", { links: linkHTML });
+      res.render("index", { links: linkHTML, animeName });
     })
     .catch((error) => {
       console.log(error);
@@ -52,9 +55,12 @@ app.get("/search", (req, res) => {
     });
 });
 
+// TODO:
+// redirect the page wheen choses the anime
+// take the same link and save
 app.get("/episode", (req, res) => {
-  const episode = req.query.episode || 0;
-  const animeName = "conan";
+  const episode = req.query.episode || 1;
+  const animeName = "one-piece";
   const url = `https://w1.anime4up.tv/episode/${animeName}-%d8%a7%d9%84%d8%ad%d9%84%d9%82%d8%a9-${episode}/`;
 
   axios(url)
@@ -71,7 +77,13 @@ app.get("/episode", (req, res) => {
           link,
         });
       });
-      res.send(links);
+      const linkHTML = links.map((link) => {
+        return {
+          provider: link.provider,
+          linkHref: link.link,
+        };
+      });
+      res.render("episode", { links: linkHTML });
     })
     .catch((error) => {
       console.log(error);
