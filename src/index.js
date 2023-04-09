@@ -2,9 +2,22 @@ const PORT = 3000;
 const axios = require("axios");
 const express = require("express");
 const cheerio = require("cheerio");
+const path = require("path");
 const app = express();
+const hbs = require("hbs");
 
-const data = [];
+const viewPath = path.join(__dirname, "../templates/views");
+const partialsPath = path.join(__dirname, "../templates/partials");
+
+//handlebars engine
+app.set("view engine", "hbs");
+app.set("views", viewPath);
+hbs.registerPartials(partialsPath);
+
+app.get("/", (req, res) => {
+  res.render("index");
+});
+
 app.get("/search", (req, res) => {
   const animeName = req.query.anime;
   const url = `https://w1.anime4up.tv/?search_param=animes&s=${animeName}`;
@@ -23,14 +36,15 @@ app.get("/search", (req, res) => {
           img,
         });
       });
-      // console.log(links);
+
       const linkHTML = links.map((link) => {
-        return `<img src="${link.img}"></img>
-         <a href="${link.link}">click me</a>
-         `;
+        return {
+          imgSrc: link.img,
+          linkHref: link.link,
+        };
       });
-      const responseHTML = linkHTML.join("\n");
-      res.send(responseHTML);
+
+      res.render("search", { links: linkHTML });
     })
     .catch((error) => {
       console.log(error);
