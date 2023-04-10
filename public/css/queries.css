@@ -1,0 +1,29 @@
+@media (max-width: 80em) {
+  .result {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 60em) {
+  html {
+  }
+  .result {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .header {
+    padding: 2.4rem;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 60em) {
+  .search-box {
+    width: 22rem;
+  }
+  .result {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
