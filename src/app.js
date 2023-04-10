@@ -18,7 +18,7 @@ hbs.registerPartials(partialsPath);
 
 let animeName = "";
 
-app.get("/", (req, res) => {
+app.get("", (req, res) => {
   const animeName = req.query.anime;
   const url = `https://w1.anime4up.tv/?search_param=animes&s=${animeName}`;
 
