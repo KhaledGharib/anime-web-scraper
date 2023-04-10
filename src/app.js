@@ -1,7 +1,7 @@
 const PORT = 3000;
-const axios = require("axios");
+// const axios = require("axios");
 const express = require("express");
-const cheerio = require("cheerio");
+// const cheerio = require("cheerio");
 const path = require("path");
 const app = express();
 const hbs = require("hbs");
