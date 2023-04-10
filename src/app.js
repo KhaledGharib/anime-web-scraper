@@ -1,10 +1,10 @@
-const PORT = 3000;
 const axios = require("axios");
 const express = require("express");
 const cheerio = require("cheerio");
 const path = require("path");
 const app = express();
 const hbs = require("hbs");
+const port = process.env.PORT || 3030;
 
 const publicDirPath = path.join(__dirname, "../public");
 const viewPath = path.join(__dirname, "../templates/views");
@@ -88,5 +88,5 @@ app.get("/episode", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`server running on port ${PORT}`);
+  console.log(`server running on port ${port}`);
 });
