@@ -5,8 +5,6 @@
 }
 
 @media (max-width: 60em) {
-  html {
-  }
   .result {
     grid-template-columns: repeat(2, 1fr);
   }
