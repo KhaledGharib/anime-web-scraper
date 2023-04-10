@@ -65,8 +65,13 @@ h1 {
 
 .result {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.2rem;
+}
+
+.card img {
+  border-radius: 9px;
+  box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.5);
 }
 
 .card {
@@ -77,8 +82,8 @@ h1 {
   gap: 1.2rem;
   text-align: center;
   color: #fff;
-  height: 52rem;
-  width: 36rem;
+  height: 40rem;
+  width: 30rem;
   justify-content: center;
   box-shadow: inset 0px 0px 34px 0rem #9775fa;
   transition: all 0.3s;
