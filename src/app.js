@@ -87,6 +87,6 @@ app.get("/episode", (req, res) => {
     });
 });
 
-app.listen(PORT, () => {
-  console.log(`server running on port ${port}`);
+app.listen(port, () => {
+  console.log("server running on port " + port);
 });
