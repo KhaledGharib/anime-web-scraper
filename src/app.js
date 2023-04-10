@@ -5,9 +5,7 @@ const cheerio = require("cheerio");
 const path = require("path");
 const app = express();
 const hbs = require("hbs");
-const { NOMEM } = require("dns");
-const { link } = require("fs");
-const { query } = require("express");
+
 const publicDirPath = path.join(__dirname, "../public");
 const viewPath = path.join(__dirname, "../templates/views");
 const partialsPath = path.join(__dirname, "../templates/partials");
@@ -21,7 +19,7 @@ hbs.registerPartials(partialsPath);
 let animeName = "";
 
 app.get("/", (req, res) => {
-  const animeName = req.query.anime || "one-piece";
+  const animeName = req.query.anime;
   const url = `https://w1.anime4up.tv/?search_param=animes&s=${animeName}`;
 
   axios(url)
@@ -52,16 +50,14 @@ app.get("/", (req, res) => {
       res.render("index", { links: linkHTML, animeName });
     })
     .catch((error) => {
-      console.log(error);
-      res.status(500).send("An error occurred");
+      res.status(500).send(error, "An error occurred");
     });
-  console.log(animeName);
 });
 
 app.get("/episode", (req, res) => {
   const episode = req.query.episode || 1;
-  anime = req.query.anime;
-  const url = `https://w1.anime4up.tv/episode/${anime}-%d8%a7%d9%84%d8%ad%d9%84%d9%82%d8%a9-${episode}/`;
+
+  const url = `https://w1.anime4up.tv/episode/${req.query.anime}-%d8%a7%d9%84%d8%ad%d9%84%d9%82%d8%a9-${episode}/`;
 
   axios(url)
     .then((response) => {
@@ -94,3 +90,4 @@ app.get("/episode", (req, res) => {
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
 });
+delete_some_lines;
