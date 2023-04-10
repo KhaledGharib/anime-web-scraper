@@ -83,7 +83,7 @@ app.get("/episode", (req, res) => {
     })
     .catch((error) => {
       console.log(error);
-      res.status(500).send("An error occurred");
+      res.status(400).send("An error occurred");
     });
 });
 

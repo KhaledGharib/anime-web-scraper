@@ -27,6 +27,7 @@ html {
 
 form {
   align-self: center;
+  justify-self: center;
 }
 h1 {
   align-self: center;
@@ -59,6 +60,7 @@ h1 {
   border-radius: 0.5rem;
   width: 8rem;
   height: 5rem;
+  transition: all 0.3s;
 }
 
 .result {
@@ -74,7 +76,17 @@ h1 {
   align-items: center;
   gap: 1.2rem;
   text-align: center;
-  border: 1px solid;
+  color: #fff;
+  height: 52rem;
+  width: 36rem;
+  justify-content: center;
+  box-shadow: inset 0px 0px 34px 0rem #9775fa;
+  transition: all 0.3s;
+  border-radius: 9px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
 }
 
 .watch {
@@ -84,8 +96,12 @@ h1 {
   text-decoration: none;
   color: #fff;
   padding: 1.2rem 1.6rem;
-  background-color: #333;
+  background-color: #9775fa;
   border-radius: 0.5rem;
+  transition: all 0.3s;
+}
+.watch:hover {
+  background-color: #161327;
 }
 #btn-link {
   width: 20rem;
@@ -99,6 +115,9 @@ h1 {
   cursor: pointer;
 }
 
+body {
+  background-color: #2e294e;
+}
 #btn-link:hover {
   background-color: #aaa;
   transform: translatey(-5px);
