@@ -2,13 +2,18 @@
   .result {
     grid-template-columns: repeat(3, 1fr);
   }
+  .container {
+    max-width: 90rem;
+  }
 }
 
 @media (max-width: 60em) {
   .result {
     grid-template-columns: repeat(2, 1fr);
   }
-
+  .container {
+    max-width: 60rem;
+  }
   .header {
     padding: 2.4rem;
     font-size: 1.2rem;
@@ -17,11 +22,31 @@
   }
 }
 
-@media (max-width: 60em) {
+@media (max-width: 40em) {
   .search-box {
     width: 22rem;
   }
+  .container {
+    justify-content: center;
+    max-width: 40rem;
+  }
+  .card img {
+    width: 170px;
+  }
+  .card {
+    height: 33rem;
+    width: 20rem;
+  }
+  .result {
+    /* grid-template-columns: repeat(1, 1fr); */
+  }
+}
+
+@media (max-width: 28em) {
   .result {
     grid-template-columns: repeat(1, 1fr);
+  }
+  .container {
+    max-width: 20rem;
   }
 }

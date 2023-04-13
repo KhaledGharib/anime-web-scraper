@@ -30,18 +30,21 @@
 
     </header>
     <div id="center" class="result container">
-
       {{#each links}}
-        {{! <form action="/episode" method="get"> }}
-        <div class="card">
-          {{!-- <p>{{this.title}}</p> --}}
-          <img src="{{this.imgSrc}}" />
-          <p>
-            <button disabled class="watch">Start watching</button>
-          </p>
-          <input type="hidden" name="anime" value="{{this.title}}" />
+        <div id="div-form">
+
+          {{! <form action="/episode" method="get"> }}
+          <div class="card">
+            {{!-- <p>{{this.title}}</p> --}}
+            <img src="{{this.imgSrc}}" />
+            <p>
+              <button disabled class="watch">Start watching</button>
+            </p>
+            <input type="hidden" name="anime" value="{{this.title}}" />
+          </div>
+          {{! </form> }}
         </div>
-        {{! </form> }}
+
       {{/each}}
     </div>
 
